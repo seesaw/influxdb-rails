@@ -29,19 +29,20 @@ module InfluxDB
       include Configurable
 
       set_defaults(
-        hosts:          ["localhost"].freeze,
-        port:           8086,
-        username:       "root".freeze,
-        password:       "root".freeze,
-        database:       nil,
-        auth_method:    "params".freeze,
-        async:          true,
-        use_ssl:        false,
-        retry:          nil,
-        open_timeout:   5,
-        read_timeout:   300,
-        max_delay:      30,
-        time_precision: "s".freeze
+        hosts:            ["localhost"].freeze,
+        port:             8086,
+        username:         "root".freeze,
+        password:         "root".freeze,
+        database:         nil,
+        auth_method:      "params".freeze,
+        async:            true,
+        use_ssl:          false,
+        retry:            nil,
+        open_timeout:     5,
+        read_timeout:     300,
+        max_delay:        30,
+        time_precision:   "s".freeze,
+        retention_policy: nil
       )
 
       def initialize
