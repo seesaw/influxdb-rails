@@ -17,7 +17,7 @@ RSpec.describe InfluxDB::Rails::Metric do
       metric.write
       data = { values: { a: 1 }, timestamp: timestamp.utc.to_i }
       expect(client).to have_received(:write_point)
-        .with(config.measurement_name, a_hash_including(data), config.client.time_precision, nil)
+        .with(config.measurement_name, a_hash_including(data))
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe InfluxDB::Rails::Metric do
       metric.write
       data = { values: { a: 1 }, timestamp: timestamp.utc.to_i }
       expect(client).to have_received(:write_point)
-        .with(config.measurement_name, a_hash_including(data), config.client.time_precision, "fancy_policy")
+        .with(config.measurement_name, a_hash_including(data), nil, "fancy_policy")
     end
   end
 end
