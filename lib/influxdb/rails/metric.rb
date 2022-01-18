@@ -12,12 +12,22 @@ module InfluxDB
       end
 
       def write
-        client.write_point configuration.measurement_name, options
+        client.write_point(*write_point_arguments)
       end
 
       private
 
       attr_reader :configuration, :tags, :values, :timestamp
+
+      def write_point_arguments
+        arguments = [configuration.measurement_name, options]
+
+        if configuration.client.retention_policy.present?
+          arguments.push(nil, configuration.client.retention_policy)
+        end
+
+        arguments
+      end
 
       def options
         {

@@ -5,7 +5,7 @@ module InfluxDB
         []
       end
 
-      def write_point(name, options = {})
+      def write_point(name, options = {}, _time_precision = nil, _retention_policy = nil)
         metrics << options.merge(name: name)
       end
     end

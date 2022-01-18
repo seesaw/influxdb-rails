@@ -72,6 +72,19 @@ RSpec.describe InfluxDB::Rails::Configuration do
         expect(subject.time_precision).to eql("ms")
       end
     end
+
+    describe "#retention_policy" do
+      it "defaults to nil" do
+        expect(subject.retention_policy).to eql(nil)
+      end
+
+      it "can be updated" do
+        InfluxDB::Rails.configure do |config|
+          config.client.retention_policy = "one_month"
+        end
+        expect(subject.retention_policy).to eql("one_month")
+      end
+    end
   end
 
   describe "#rails_app_name" do
