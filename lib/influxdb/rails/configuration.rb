@@ -98,7 +98,8 @@ module InfluxDB
         :open_timeout,
         :read_timeout,
         :max_delay,
-        :time_precision
+        :time_precision,
+        :retention_policy
 
       def initialize
         @client = ClientConfig.new
